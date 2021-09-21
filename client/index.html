@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+   
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+
+#video-call-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#localVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 16px;
+    border-radius: 16px;
+    max-width: 20%;
+    max-height: 20%;
+    background: #ffffff;
+}
+
+#remoteVideo {
+    background: #000000;
+    width: 100%;
+    height: 100%;
+}
+
+.call-action-div {
+    position: absolute;
+    left: 45%;
+    bottom: 32px;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+
+button {
+    margin: 0 3px 10px 0;
+    padding-left: 2px;
+    padding-right: 2px;
+    width: 99px;
+  }
+  
+  button:last-of-type {
+    margin: 0;
+  }
+  
+  p.borderBelow {
+    margin: 0 0 20px 0;
+    padding: 0 0 20px 0;
+  }
+  
+  video {
+    vertical-align: top;
+    --width: 25vw;
+    width: var(--width);
+    height: calc(var(--width) * 0.5625);
+  }
+  
+  video:last-of-type {
+    margin: 0 0 20px 0;
+  }
+  
+  video#gumVideo {
+    margin: 0 20px 20px 0;
+  }
+
+
+
+  </style>
+  
+  </head>
+
+
+
+  <body>
+    <div id="myName">
+      <input type="text" id="usernameInput" placeholder="My name">
+      <input type="button" id="loginBtn" value="Save"></input>
+    </div>
+   
+    <div id="otherElements">
+     
+      <div id="video-call">
+        <video muted id="localVideo"  autoplay></video>
+        <video id="remoteVideo" playsinline autoplay></video>
+        <video id="recorded" playsinline loop></video>
+        <div class="call-action-div">
+          <div id='callReceiver' style="display: none;">
+            <button id = "answerBtn" class = "btn-success btn">Answer</button> 
+            <button id = "declineBtn" class = "btn-danger btn">Decline</button> 
+        </div>
+        <div id='callOngoing' style="display: none;">
+          <button id = "hangUpBtn" class = "btn-danger btn">Hang Up</button>
+          <button id="record" class = "btn-success btn" disabled>Record</button>
+          <button id="play" class = "btn-warning btn" disabled>Play</button>
+          <button id="download" class = "btn-primary btn" disabled>Download</button>
+      </div>
+        </div>
+    </div>
+
+
+      <br />
+      <div id='callInitiator'>
+        <div>
+          
+          <div class="span3" ng-controller="UserController">
+            <div class="well" id="userlist">
+                <strong>Online users :</strong>
+                <p id="alertLogin" class="alert alert-success"><span id="allUsers"></span></p>
+                <table class="userlist">
+                    <tr ng-repeat="user in users">
+                        <td><span id="showLocalUserName"></span></td>
+                        <td><input id = "callToUsernameInput" class="form-control"
+                          type = "text" placeholder = "Username to call"/></td>
+                        <td> <button style="width:100%;" class="btn btn-success" id = "callBtn" >Call</button></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+            </div>
+        </div>
+        </div>
+       
+      </div>
+    
+  </div> 
+  <div>
+  
+    <p>
+      <input  type="hidden" id="echoCancellation" />
+    </p>
+  </div>
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script src="webrtc.js"></script>
+  </body>
+</html>
